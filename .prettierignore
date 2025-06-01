@@ -1,0 +1,5 @@
+/bootstrap 
+/vendor
+/public
+/storage
+# maksud dari perintah di atas adalah "/bootstrap" bearti semua file yg ada di folder bootstrap gausah di integrasi prettier
