@@ -89,7 +89,7 @@ export default function Register() {
                     <TextInput
                       id="password_confirmation"
                       name="password_confirmation"
-                      type="password_confirmation"
+                      type="password"
                       value={data.password_confirmation}
                       className="mt-1 block w-full"
                       onChange={(e) => setData('password_confirmation', e.target.value)}
