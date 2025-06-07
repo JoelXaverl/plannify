@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -14,9 +15,8 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get( 'dashboard', [DashboardController::class, 'index'])->name('dashboard')
+    ->middleware(['auth']);
 
 Route::get('testing', fn() => Inertia::render('Testing')); # fungsi dari inertia render adlh utk merender sebuah view atau halaman menggunakan InertiaJS, Inertia ini adlh library yg memungkinkan laravel berfungi sbg SPA tanpa menggunakan API. Kemudian ketika kita menggunakan INertia render ini hanya componen tyg berada didlm folder Pages aj yg dirender, kalo diluar itu pasti tdk bisa pasti bisa error
 
