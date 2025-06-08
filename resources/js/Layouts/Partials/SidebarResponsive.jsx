@@ -79,7 +79,7 @@ export default function SidebarResponsive({ auth, url }) {
             {/* workspaces */}
             <div className="flex items-center justify-between">
               <div className="text-xs font-semibold uppercase leading-relaxed text-foreground">Workspace</div>
-              <Link>
+              <Link href={route('workspaces.create')}>
                 <PiPlus className="h-4 w-4 text-foreground hover:text-red-500" />
               </Link>
             </div>

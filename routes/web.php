@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\WorkspaceController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -18,7 +19,14 @@ Route::get('/', function () {
 Route::get( 'dashboard', [DashboardController::class, 'index'])->name('dashboard')
     ->middleware(['auth']);
 
-Route::get('testing', fn() => Inertia::render('Testing')); # fungsi dari inertia render adlh utk merender sebuah view atau halaman menggunakan InertiaJS, Inertia ini adlh library yg memungkinkan laravel berfungi sbg SPA tanpa menggunakan API. Kemudian ketika kita menggunakan INertia render ini hanya componen tyg berada didlm folder Pages aj yg dirender, kalo diluar itu pasti tdk bisa pasti bisa error
+Route::controller(WorkspaceController::class)->group(function(){
+    Route::get('workspaces/create', 'create')->name('workspaces.create');
+    Route::post('workspaces/create', 'store')->name('workspaces.store');
+    Route::get('workspaces/p/{workspace:slug}', 'show')->name('workspaces.show');
+    Route::get('workspaces/edit/{workspace:slug}', 'edit')->name('workspaces.edit');
+    Route::put('workspaces/edit/{workspace:slug}', 'update')->name('workspaces.update');
+    Route::delete('workspaces/destroy/{workspace:slug}', 'destroy')->name('workspaces.destroy');
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
